@@ -21,7 +21,17 @@
 		(선택)
 		형식) <typeAlias alias="alias명" type="클래스의 전체이름"/>
 	 -->
-	 
+	<typeAlias alias="AddressVO" type="mukgo.vo.AddressVO"/>
+	<typeAlias alias="BoardListVO" type="mukgo.vo.BoardListVO"/>
+	<typeAlias alias="DeliveryVO" type="mukgo.vo.DeliveryVO"/>
+	<typeAlias alias="FavoriteVO" type="mukgo.vo.FavoriteVO"/>
+	<typeAlias alias="MemberVO" type="mukgo.vo.MemberVO"/>
+	<typeAlias alias="MenuVO" type="mukgo.vo.MenuVO"/>
+	<typeAlias alias="OrderVO" type="mukgo.vo.OrderVO"/>
+	<typeAlias alias="PostVO" type="mukgo.vo.PostVO"/>
+	<typeAlias alias="ReviewImageVO" type="mukgo.vo.ReviewImageVO"/>
+	<typeAlias alias="ReviewVO" type="mukgo.vo.ReviewVO"/>
+	<typeAlias alias="StoreVO" type="mukgo.vo.StoreVO"/>
 <!-- 	 <typeAlias alias="memVO" type="kr.or.ddit.vo.MemberVO"/> -->
 	
 	<!-- DB와 연결을 처리하는 부분 -->
