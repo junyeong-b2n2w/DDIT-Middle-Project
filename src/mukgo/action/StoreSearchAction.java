@@ -1,4 +1,4 @@
-package mukgo.user.store.action;
+package mukgo.action;
 
 import java.io.IOException;
 
@@ -12,14 +12,13 @@ public class StoreSearchAction implements IAction{
 
 	@Override
 	public boolean isRedirect() {
-		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
 	@Override
 	public String process(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		System.out.println("Test");
 		return "/user/storeSearch.jsp";
 	}
 
