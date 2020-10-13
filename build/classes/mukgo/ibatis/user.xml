@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="store">
+	<select id="SearchStore" parameterClass="java.util.Map" resultClass="StoreVO">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0 
+		AND sto_NAME LIKE '%'||#sto_name#||'%'
+		AND sto_pos_x &lt; #sto_pos_x_max# AND sto_pos_x &gt; #sto_pos_x_min#
+		AND sto_pos_y &lt; #sto_pos_y_max# AND sto_pos_y &gt; #sto_pos_y_min# 
+		<iterate property="dtList" prepend="AND sto_dt_gb IN" open="(" close=")" conjunction=",">
+			#dtList[]#
+		</iterate> 
+		<iterate property="brandList" prepend="AND sto_brand IN" open="(" close=")" conjunction=",">
+			#brandList[]#
+		</iterate> 
+	</select>
+	<select id="StoreAll" resultClass="StoreVO">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0
+	</select>
+</sqlMap>
