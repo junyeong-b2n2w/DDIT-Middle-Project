@@ -13,7 +13,7 @@ public class StoreSearchAction implements IAction{
 	@Override
 	public boolean isRedirect() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
