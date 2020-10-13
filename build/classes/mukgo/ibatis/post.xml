@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!DOCTYPE sqlMap
@@ -21,4 +22,29 @@
 		</selectKey> 
 	</insert>
 
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="post">
+
+	<select id="selectAll" resultClass="PostVO">
+		select * from tb_post order by seq desc
+	</select>
+
+	<insert id="" parameterClass="PostVO">
+		insert into tb_post 
+			values(
+				board1_seq_seq.nextval,
+				
+			)
+		<selectKey keyProperty="seq" resultClass="int">
+			select post_seq.currval from dual
+		</selectKey> 
+	</insert>
+
+>>>>>>> branch 'master' of https://github.com/junyeong-b2n2w/DDIT-Middle-Project.git
 </sqlMap>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
@@ -10,4 +11,18 @@
 	<insert id="insertMember" parameterClass="MemberVO">
 		INSERT INTO tb_member VALUES (#mem_id#, #mem_num#, #mem_pw#, #mem_type_gb#, #mem_quit_gb#, #mem_tel#, #mem_reg_num#, #mem_email#)
 	</insert>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="join">
+	<select id="searchMember" parameterClass="String" resultClass="int">
+		SELECT mem_id FROM tb_member WHERE mem_id = #mem_id#
+	</select>
+	
+	<insert id="insertMember" parameterClass="MemberVO">
+		INSERT INTO tb_member VALUES (#mem_id#, #mem_num#, #mem_pw#, #mem_type_gb#, #mem_quit_gb#, #mem_tel#, #mem_reg_num#, #mem_email#)
+	</insert>
+>>>>>>> branch 'master' of https://github.com/junyeong-b2n2w/DDIT-Middle-Project.git
 </sqlMap>
