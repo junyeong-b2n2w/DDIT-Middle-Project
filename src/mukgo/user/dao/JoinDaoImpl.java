@@ -32,8 +32,14 @@ public class JoinDaoImpl implements IJoinDao{
 
 	@Override
 	public int insertMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		int cnt = 0;
+		try {
+			Object obj = smc.insert("join.insertMember", vo);
+			if(obj == null) cnt = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return cnt;
 	}
 
 }

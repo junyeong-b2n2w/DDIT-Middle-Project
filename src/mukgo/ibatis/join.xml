@@ -8,6 +8,6 @@
 	</select>
 	
 	<insert id="insertMember" parameterClass="MemberVO">
-	
+		INSERT INTO tb_member VALUES (#mem_id#, #mem_num#, #mem_pw#, #mem_type_gb#, #mem_quit_gb#, #mem_tel#, #mem_reg_num#, #mem_email#)
 	</insert>
 </sqlMap>

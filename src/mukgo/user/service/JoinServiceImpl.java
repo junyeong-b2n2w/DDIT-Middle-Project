@@ -25,8 +25,7 @@ public class JoinServiceImpl implements IJoinService{
 
 	@Override
 	public int insertMember(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insertMember(vo);
 	}
 
 }
