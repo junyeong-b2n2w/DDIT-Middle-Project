@@ -32,4 +32,15 @@ public class StoreServiceImpl implements IStoreService{
 		return searchList;
 	}
 
+	@Override
+	public List<StoreVO> storeAll(){
+		List<StoreVO> storeList = null;
+		try {
+			storeList = dao.storeAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return storeList;
+	}
+
 }

@@ -1,5 +1,6 @@
 package mukgo.user.store.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,4 +16,11 @@ public interface IStoreService {
 	 * @return 리턴 값으로 검색내용에 해당하는 StoreVO List객체를 반환한다.
 	 */
 	public List<StoreVO> searchStore(Map<String, Object> param);
+	
+	/**
+	 * 모든 가게 리스트를 반환하는 메서드
+	 * @return db에 등록되어있는 탈퇴처리 하지않은 모든가게
+	 * @throws SQLException
+	 */
+	public List<StoreVO> storeAll();
 }

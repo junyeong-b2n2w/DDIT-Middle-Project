@@ -8,4 +8,5 @@ import mukgo.vo.StoreVO;
 
 public interface IStoreDao {
 	public List<StoreVO> searchStore(Map<String, Object> param) throws SQLException;
+	public List<StoreVO> storeAll() throws SQLException;
 }

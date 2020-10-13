@@ -24,5 +24,10 @@ public class StoreDaoImpl implements IStoreDao{
 	public List<StoreVO> searchStore(Map<String, Object> param) throws SQLException {
 		return smc.queryForList("store.SearchStore", param);
 	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<StoreVO> storeAll() throws SQLException {
+		return smc.queryForList("store.StoreAll");
+	}
 
 }

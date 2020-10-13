@@ -6,10 +6,10 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<script type="text/javascript">
-		console.log(<%=request.getAttribute("storeList")%>)
-		</script>
 		<title>Insert title here</title>
+		<script type="text/javascript">
+			console.log(<%=request.getAttribute("storeList")%>)
+		</script>
 	</head>
 	<body>
 	</body>

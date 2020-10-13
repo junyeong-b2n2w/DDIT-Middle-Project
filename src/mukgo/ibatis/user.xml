@@ -4,7 +4,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 	
 <sqlMap namespace="store">
-	<select id="SearchStore" parameterClass="map" resultClass="StoreVO">
+	<select id="SearchStore" parameterClass="java.util.Map" resultClass="StoreVO">
 		SELECT *
 		FROM tb_store
 		WHERE sto_delete_gb = 0 
@@ -14,8 +14,13 @@
 		<iterate property="dtList" prepend="AND sto_dt_gb IN" open="(" close=")" conjunction=",">
 			#dtList[]#
 		</iterate> 
-		<iterate property="brandList" prepend="AND sto_dt_gb IN" open="(" close=")" conjunction=",">
+		<iterate property="brandList" prepend="AND sto_brand IN" open="(" close=")" conjunction=",">
 			#brandList[]#
 		</iterate> 
+	</select>
+	<select id="StoreAll" resultClass="StoreVO">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0
 	</select>
 </sqlMap>
