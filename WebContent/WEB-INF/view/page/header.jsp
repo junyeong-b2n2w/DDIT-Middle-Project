@@ -39,7 +39,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
     />
     <!-- Startup CSS (Styles for all blocks) - Remove ".min" if you would edit a css code -->
-    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="<%=request.getContextPath()%>/asset/css/style.min.css" rel="stylesheet" />
     <!-- jQuery 3.5.1 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="<%=request.getContextPath()%>/asset/css/map.css" rel="stylesheet" />
@@ -54,7 +54,7 @@
             data-aos="fade-up"
             data-aos-delay="0"
           >
-            <a href="index.jsp" class="link mr-20 color-main f-24 bold">
+            <a href="<%=request.getContextPath()%>/index.jsp" class="link mr-20 color-main f-24 bold">
               Null Java
             </a>
           </div>

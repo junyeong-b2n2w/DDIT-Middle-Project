@@ -51,8 +51,8 @@
           <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="0">
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_1.jpg"
-                srcset="i/showcase_2_img_1@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_1.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_1@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -69,8 +69,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_2.jpg"
-                srcset="i/showcase_2_img_2@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_2.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_2@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -87,8 +87,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_3.jpg"
-                srcset="i/showcase_2_img_3@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_3.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_3@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -101,7 +101,7 @@
           <div class="col-md-4 col-sm-6" data-aos="fade-up" data-aos-delay="0">
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_4.jpg"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_4.jpg"
                 srcset="i/showcase_2_img_4@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
@@ -119,8 +119,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_5.jpg"
-                srcset="i/showcase_2_img_5@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_5.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_5@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -137,8 +137,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_6.jpg"
-                srcset="i/showcase_2_img_6@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_6.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_6@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -155,8 +155,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_6.jpg"
-                srcset="i/showcase_2_img_6@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_6.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_6@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -173,8 +173,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_6.jpg"
-                srcset="i/showcase_2_img_6@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_6.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_6@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
@@ -192,8 +192,8 @@
           >
             <a href="#" class="mt-50 link color-main">
               <img
-                src="i/showcase_2_img_6.jpg"
-                srcset="i/showcase_2_img_6@2x.jpg 2x"
+                src="<%=request.getContextPath()%>/asset/i/showcase_2_img_6.jpg"
+                srcset="<%=request.getContextPath()%>/asset/i/showcase_2_img_6@2x.jpg 2x"
                 alt=""
                 class="img-fluid radius10"
               />
