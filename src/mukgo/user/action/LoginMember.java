@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import mukgo.user.service.IJoinService;
-import mukgo.user.service.JoinServiceImpl;
+import mukgo.user.dao.ILoginDao;
+import mukgo.user.service.ILoginService;
+import mukgo.user.service.LoginServiceImpl;
+import mukgo.vo.MemberVO;
 import mukgo.web.IAction;
 
 public class LoginMember implements IAction{
@@ -28,15 +30,33 @@ public class LoginMember implements IAction{
 		String id =request.getParameter("mem_id");
 		String pass = request.getParameter("mem_pw");
 		
-		IJoinService service = JoinServiceImpl.getInstance();
+		ILoginService service = LoginServiceImpl.getInstance();
 		
-		int cnt = service.searchMember(id);
 		
-		request.setAttribute("idCount", cnt);
 		
-		if(cnt > 0){
-			session.setAttribute("mem_id", id);
+		MemberVO vo = new MemberVO();
+		
+		vo.setMem_id(id);
+		vo.setMem_pw(pass);
+		
+	
+		MemberVO resultVO = service.loginMember(vo);
+		
+		int result = 0;
+		
+		if(resultVO != null){
+			result =1;
+			session.setAttribute("mem_id", resultVO.getMem_id());
+			
 		}
+		
+		request.setAttribute("result", result);
+		
+		
+		
+		
+		request.setAttribute("resultVO", resultVO);
+		
 		
 		return "/user/loginSession.jsp";
 	}

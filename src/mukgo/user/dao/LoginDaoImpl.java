@@ -20,14 +20,14 @@ public class LoginDaoImpl implements ILoginDao{
 	}
 
 	@Override
-	public int loginMember(MemberVO vo) {
-		int cnt = 0;
+	public MemberVO loginMember(MemberVO vo) {
+		MemberVO resultVO = null;
 		try {
-			cnt = (int) smc.queryForObject("login.loginMember", vo);
+			resultVO = (MemberVO) smc.queryForObject("login.loginMember", vo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return cnt;
+		return resultVO;
 	}
 
 }

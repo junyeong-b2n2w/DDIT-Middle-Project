@@ -3,7 +3,21 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 	
 <sqlMap namespace="login">
-	<select id="loginMember" parameterClass="MemberVO" resultClass="int">
-		SELECT COUNT(*) FROM tb_member WHERE mem_id = #mem_id# AND mem_pw = #mem_pw#
+	<select id="loginMember" parameterClass="MemberVO" resultClass="MemberVO">
+		SELECT 
+		
+	 MEM_ID   ,  
+    MEM_NUM    , 
+     
+    MEM_PW      ,
+    MEM_TYPE_GB ,
+    MEM_QUIT_GB ,
+    MEM_TEL     ,
+    MEM_REG_NUM ,
+    MEM_EMAIL   ,
+    NVL(MEM_STO_NUM,0) MEM_STO_NUM
+		
+		
+		 FROM tb_member WHERE mem_id = #mem_id# AND mem_pw = #mem_pw#
 	</select>
 </sqlMap>

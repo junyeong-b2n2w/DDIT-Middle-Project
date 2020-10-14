@@ -9,7 +9,7 @@
     >
       <div class="container px-xl-0">
         <form
-          action="form-handler.php"
+          action="<%=request.getContextPath()%>/user/loginMember.do"
           method="post"
           class="bg-light mx-auto mw-430 radius10 pt-40 px-50 pb-30"
         >
@@ -22,8 +22,8 @@
           </h2>
           <div class="mb-20 input_holder" data-aos="fade-up" data-aos-delay="0">
             <input
-              type="email"
-              name="email"
+              type="text"
+              name="mem_id"
               placeholder="이메일 입력"
               class="input border-gray focus-action-1 color-heading placeholder-heading w-full"
             />
@@ -35,7 +35,7 @@
           >
             <input
               type="password"
-              name="password"
+              name="mem_pw"
               placeholder="비밀번호 입력"
               class="input border-gray focus-action-1 color-heading placeholder-heading w-full"
             />
