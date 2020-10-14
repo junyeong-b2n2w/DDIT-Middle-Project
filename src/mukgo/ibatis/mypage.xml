@@ -45,4 +45,40 @@
 	<select id="getMenuInfo" parameterClass="int" resultClass="MenuVO">
 		SELECT * FROM tb_menu WHERE menu_num = #data#
 	</select>
+	
+	<select id="reviewCheck" parameterClass="int" resultClass="OrderVO">
+		SELECT count(rev_num) FROM tb_review WHERE rev_mem_num = #ord_mem_num# AND rev_ord_num = #ord_num#
+	</select>
+	
+	<insert id="reviewInsert" parameterClass="ReviewVO">
+		INSERT INTO tb_review VALUSE(review_seq.nextval, #rev_mem_num#, #rev_ord_num#, #rev_parentrev_num#, 0, #rev_star#, sysdate, #rev_content#)
+		<selectKey keyProperty="rev_num" resultClass="int">
+			SELECT review_seq.currval FROM dual
+		</selectKey>
+	</insert>
+
+	<update id="reviewDelete" parameterClass="int">
+		UPDATE tb_review SET rev_delete_gb = 1 WHERE rev_num = #data#
+	</update>	
+	
+	<update id="reviewUpdate" parameterClass="ReviewVO">
+		UPDATE tb_review SET 
+		rev_star = #rev_star#, rev_date = sysdate, rev_content = #rev_content#
+		WHERE rev_num = #rev_num#
+	</update>
+	
+	<insert id="reviewImageInsert" parameterClass="ReviewImageVO">
+		INSERT INTO tb_reviewimage VALUES(#rev_num#, reviewimage_seq.nextval, #rev_img_path#, #rev_img_name#)
+		<selectKey keyProperty="rev_img_num" resultClass="int">
+			SELECT reviewimage_seq.currval FROM dual
+		</selectKey>
+	</insert>	
+	
+	<select id="reviewImageSelect" parameterClass="int" resultClass="ReviewImageVO">
+		SELECT * FROM tb_reviewimage WHERE rev_num = #data#
+	</select>	
+
+	<delete id="reviewImageDelete" parameterClass="int">
+		DELETE FROM tb_reviewimage WHERE rev_img_num = #data#
+	</delete>	
 </sqlMap>

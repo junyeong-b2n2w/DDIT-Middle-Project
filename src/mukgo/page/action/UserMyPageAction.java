@@ -8,8 +8,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import mukgo.user.service.IMypageService;
 import mukgo.user.service.MypageServiceImpl;
 import mukgo.vo.MenuVO;
@@ -31,13 +29,16 @@ public class UserMyPageAction implements IAction{
 		List<OrderVO> list = service.userRecentOrder(1234);
 		List<String> stoNames = new ArrayList<>();
 		List<MenuVO> menuInfos = new ArrayList<>();
+		List<Integer> revChk = new ArrayList<>();
 		for(OrderVO vo : list){
 			stoNames.add(service.getStoreName(vo.getOrd_sto_num()));
+			revChk.add(service.reviewCheck(vo));
 			menuInfos.add(service.getMenuInfo(vo.getOrd_menu_num()));
 		}
 		request.setAttribute("orderList", list);
 		request.setAttribute("stoNameList", stoNames);
 		request.setAttribute("menuList", menuInfos);
+		request.setAttribute("revChk", revChk);
 		return "/page/userMypage.jsp";
 	}
 

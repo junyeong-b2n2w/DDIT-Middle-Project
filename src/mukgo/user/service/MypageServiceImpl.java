@@ -10,6 +10,8 @@ import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
 import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
+import mukgo.vo.ReviewImageVO;
+import mukgo.vo.ReviewVO;
 
 public class MypageServiceImpl implements IMypageService{
 	private IMypageDao dao;
@@ -116,6 +118,76 @@ public class MypageServiceImpl implements IMypageService{
 			e.printStackTrace();
 		}
 		return vo;
+	}
+	@Override
+	public int reviewCheck(OrderVO vo) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewCheck(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	@Override
+	public int reviewInsert(ReviewVO vo) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewInsert(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	@Override
+	public int reviewDelete(int revNum) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewDelete(revNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	@Override
+	public int reviewUpdate(ReviewVO vo) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewUpdate(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	@Override
+	public int reviewImageInsert(ReviewImageVO vo) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewImageInsert(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	@Override
+	public List<ReviewImageVO> reviewImageSelect(int revNum) {
+		List<ReviewImageVO> list = new ArrayList<>();
+		try {
+			list = dao.reviewImageSelect(revNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	@Override
+	public int reviewImageDelete(int revImgNum) {
+		int cnt = 0;
+		try {
+			cnt = dao.reviewImageDelete(revImgNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
 	}
 
 }

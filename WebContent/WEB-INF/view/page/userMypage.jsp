@@ -56,25 +56,46 @@ pageEncoding="UTF-8"%> <%@ include file="header.jsp" %>
       	List<String> stoNameList = (List<String>)request.getAttribute("stoNameList");
       	@SuppressWarnings("unchecked")
       	List<MenuVO> menuInfoList = (List<MenuVO>)request.getAttribute("menuList");
+      	@SuppressWarnings("unchecked")
+      	List<Integer> revChk = (List<Integer>)request.getAttribute("revChk");
       	for(int i=0; i<list.size(); i++){
       		int price = menuInfoList.get(i).getMenu_price() * list.get(i).getOrd_count();
       		DecimalFormat format = new DecimalFormat("###,###");
-      		format.format(price);
+      		
       %>
       <tr class="text-center">
         <td class="align-middle"><%=list.get(i).getOrd_date().substring(0, 16)%></td>
         <td class="align-middle"><a href=""><%=stoNameList.get(i)%></a></td>
-        <td class="align-middle"><%=price%></td>
-        <td class="align-middle"><%=menuInfoList.get(i).getMenu_name()%></td>
+        <td class="align-middle"><%=format.format(price)%></td>
+        <td class="align-middle"><%=menuInfoList.get(i).getMenu_name()%>&nbsp;&nbsp;&nbsp;
+        						<%=list.get(i).getOrd_count()%>개</td>
         <td class="align-middle">
+        <%if(revChk.get(i) == 0) {%>
           <button
             data-toggle="modal"
             data-target="#reviewModal"
             type="button"
+            class="btn btn-outline-danger text-dark border btn-sm"
+          >
+          리뷰쓰기
+          </button>
+          
+          	<button
+            type="button"
             class="btn btn-outline-danger text-dark border disabled btn-sm"
           >
-            리뷰 쓰기
+          리뷰쓰기
           </button>
+          <%}else{ %>
+          	<button
+            type="button"
+            class="btn btn-outline-danger text-dark border disabled btn-sm"
+          >
+          리뷰쓰기
+          </button>
+    		<%
+      		}
+     		%>
         </td>
       </tr>
       <%

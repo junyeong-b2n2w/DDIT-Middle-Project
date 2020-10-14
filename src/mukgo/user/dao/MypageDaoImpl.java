@@ -1,6 +1,7 @@
 package mukgo.user.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -10,6 +11,8 @@ import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
 import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
+import mukgo.vo.ReviewImageVO;
+import mukgo.vo.ReviewVO;
 
 public class MypageDaoImpl implements IMypageDao{
 	private static IMypageDao dao;
@@ -70,5 +73,41 @@ public class MypageDaoImpl implements IMypageDao{
 	public MenuVO getMenuInfo(int menuNum) throws SQLException {
 		return (MenuVO) smc.queryForObject("mypage.getMenuInfo", menuNum);
 	}
-	
+
+	@Override
+	public int reviewCheck(OrderVO vo) throws SQLException {
+		return (int) smc.queryForObject("mypage.reviewCheck", vo);
+	}
+
+	@Override
+	public int reviewInsert(ReviewVO vo) throws SQLException {
+		return (int) smc.insert("mypage.reviewInsert", vo);
+	}
+
+	@Override
+	public int reviewImageInsert(ReviewImageVO vo) throws SQLException {
+		return (int) smc.insert("mypage.reviewImageInsert", vo);
+	}
+
+	@Override
+	public int reviewDelete(int revNum) throws SQLException {
+		return smc.delete("mypage.reviewDelete", revNum);
+	}
+
+	@Override
+	public int reviewUpdate(ReviewVO vo) throws SQLException {
+		return smc.update("mypage.reviewUpdate", vo);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ReviewImageVO> reviewImageSelect(int revNum) throws SQLException {
+		return smc.queryForList("mypage.reviewImageSelect", revNum);
+	}
+
+	@Override
+	public int reviewImageDelete(int revImgNum) throws SQLException {
+		return smc.delete("mypage.reviewImageDelete", revImgNum);
+	}
+
 }

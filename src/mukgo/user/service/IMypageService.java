@@ -7,6 +7,8 @@ import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
 import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
+import mukgo.vo.ReviewImageVO;
+import mukgo.vo.ReviewVO;
 
 public interface IMypageService {
 	public MemberVO userMypage(String id);
@@ -26,4 +28,18 @@ public interface IMypageService {
 	public String getStoreName(int stoNum);
 	
 	public MenuVO getMenuInfo(int menuNum);
+	
+	public int reviewCheck(OrderVO vo);
+	
+	public int reviewInsert(ReviewVO vo);
+	
+	public int reviewDelete(int revNum);
+	
+	public int reviewUpdate(ReviewVO vo);
+	
+	public int reviewImageInsert(ReviewImageVO vo);
+	
+	public List<ReviewImageVO> reviewImageSelect(int revNum);
+	
+	public int reviewImageDelete(int revImgNum);
 }

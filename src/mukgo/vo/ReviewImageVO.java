@@ -1,32 +1,33 @@
 package mukgo.vo;
 
 public class ReviewImageVO {
-	private int REV_NUM;
-	private int REV_IMG_NUM;
-	private String REV_IMG_PATH;
-	private String REV_IMG_NAME;
-	public int getREV_NUM() {
-		return REV_NUM;
+	private int rev_num;
+	private int rev_img_num;
+	private String rev_img_path;
+	private String rev_img_name;
+	public int getRev_num() {
+		return rev_num;
 	}
-	public void setREV_NUM(int rEV_NUM) {
-		REV_NUM = rEV_NUM;
+	public void setRev_num(int rev_num) {
+		this.rev_num = rev_num;
 	}
-	public int getREV_IMG_NUM() {
-		return REV_IMG_NUM;
+	public int getRev_img_num() {
+		return rev_img_num;
 	}
-	public void setREV_IMG_NUM(int rEV_IMG_NUM) {
-		REV_IMG_NUM = rEV_IMG_NUM;
+	public void setRev_img_num(int rev_img_num) {
+		this.rev_img_num = rev_img_num;
 	}
-	public String getREV_IMG_PATH() {
-		return REV_IMG_PATH;
+	public String getRev_img_path() {
+		return rev_img_path;
 	}
-	public void setREV_IMG_PATH(String rEV_IMG_PATH) {
-		REV_IMG_PATH = rEV_IMG_PATH;
+	public void setRev_img_path(String rev_img_path) {
+		this.rev_img_path = rev_img_path;
 	}
-	public String getREV_IMG_NAME() {
-		return REV_IMG_NAME;
+	public String getRev_img_name() {
+		return rev_img_name;
 	}
-	public void setREV_IMG_NAME(String rEV_IMG_NAME) {
-		REV_IMG_NAME = rEV_IMG_NAME;
+	public void setRev_img_name(String rev_img_name) {
+		this.rev_img_name = rev_img_name;
 	}
+	
 }
