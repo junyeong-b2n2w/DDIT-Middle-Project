@@ -25,7 +25,7 @@ public class StoreAllAction implements IAction{
 	public String process(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		IStoreService service = StoreServiceImpl.getConnection();
-		List<StoreVO> storeList = service.storeAll();
+		List<StoreVO> storeList = service.allStore();
 		Gson gson = new Gson();
 		String jsonList = gson.toJson(storeList); 
 		request.setAttribute("storeList", jsonList);

@@ -1,26 +1,30 @@
 package mukgo.user.store.service;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import mukgo.vo.MenuVO;
 import mukgo.vo.StoreVO;
 
 public interface IStoreService {
-	/**
-	 * 가게 검색을 위한 메서드
-	 * Map 객체에 (가게명, 가게위치(최대 최소)x, y, 드라이브스루 구분List, 브랜드 구분List)를 넘겨준다
-	 * 검색 요청 없을시 기본값(가게명="",가게위치 최대=999, 최소=0, 드라이브스루=(List{0, 1}) 브랜드=(List{1, 2, 3}))
-	 * @param Map(sto_name, sto_pos_x_max, sto_pos_x_max
-	 * 			, sto_pos_y_max, sto_pos_y_min, dtList, brandList)
-	 * @return 리턴 값으로 검색내용에 해당하는 StoreVO List객체를 반환한다.
-	 */
+	//가게이름
+	public List<StoreVO> allStore();
+	//가게검색
 	public List<StoreVO> searchStore(Map<String, Object> param);
+	//평균별점
+	public int storeGrade(int grade);
+	//리뷰수
+	public int storeReviewCnt();
+	//찜수
+	public int storeChoiceCnt();
+	//가게메뉴들
+	public List<StoreVO> storeMenu(int num);
+	//메뉴추가
+	public int storeInsertMenu(MenuVO vo);
 	
-	/**
-	 * 모든 가게 리스트를 반환하는 메서드
-	 * @return db에 등록되어있는 탈퇴처리 하지않은 모든가게
-	 * @throws SQLException
-	 */
-	public List<StoreVO> storeAll();
+	//메뉴삭제
+	public int storeUpdateDelete(MenuVO vo);
+	//매장정보
+	public int storeInfo(StoreVO vo);
+	
 }
