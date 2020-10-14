@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="mypage">
+	<select id="userMypage" parameterClass="String" resultClass="MemberVO">
+		SELECT * FROM tb_member WHERE mem_id = #data#
+	</select>
+	
+	<update id="userMypageUpdate" parameterClass="MemberVO">
+		UPDATE tb_member SET mem_id = #mem_id#, mem_num = #mem_num#, 
+		mem_pw = #mem_pw#, mem_type_gb = #mem_type_gb#, 
+		mem_quit_gb = #mem_quit_gb#, mem_tel = #mem_tel#, 
+		mem_reg_num = #mem_reg_num#, mem_email = #mem_email#, mem_sto_num = #mem_sto_num#
+		WHERE mem_id = #mem_id#
+	</update>
+
+	<update id="userMypageDelete" parameterClass="String">
+		UPDATE tb_member SET mem_quit_gb = 1 WHERE mem_id = #data#
+	</update>	
+
+	<select id="userAddress" parameterClass="int" resultClass="AddressVO">
+		SELECT * FROM tb_address WHERE mem_num = #data# 
+	</select>
+	
+	<update id="userAddressUpdate" parameterClass="AddressVO">
+		UPDATE tb_address SET add_mem_gb = #add_mem_gb#, add_name = #add_name#,
+		add_sido = #add_sido#, add_gungu = #add_gungu#,
+		add_dong = #add_dong#, add_detail = #add_detail#, add_post_num = #add_post_num#
+		WHERE add_mem_num = #add_mem_num#  
+	</update>	
+	
+	<delete id="userAddressDelete" parameterClass="int">
+		DELETE FROM tb_address WHERE add_mem_num = #data#
+	</delete>
+	
+	<select id="userRecentOrder" parameterClass="int" resultClass="OrderVO">
+		SELECT * FROM tb_order WHERE ord_mem_num = #data#
+	</select>	
+	
+	<select id="getStoreName" parameterClass="int" resultClass="String">
+		SELECT sto_name FROM tb_store WHERE sto_num = #data#
+	</select>
+	
+	<select id="getMenuInfo" parameterClass="int" resultClass="MenuVO">
+		SELECT * FROM tb_menu WHERE menu_num = #data#
+	</select>
+</sqlMap>
