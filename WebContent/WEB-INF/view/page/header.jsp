@@ -78,24 +78,24 @@
                   aria-labelledby="navigation_2_dropdown_1"
                 >
                   <div>
-                    <a href="board.jsp" class="link color-main"> 이벤트 </a>
+                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> 이벤트 </a>
                   </div>
                   <div>
-                    <a href="board.jsp" class="link color-main"> 공지사항 </a>
+                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> 공지사항 </a>
                   </div>
                   <div>
-                    <a href="board.jsp" class="link color-main"> QnA </a>
+                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> QnA </a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="text-md-right" data-aos="fade-up" data-aos-delay="300">
-              <a href="register.jsp" class="link mx-15 color-main">
+              <a href="<%=request.getContextPath()%>/register.do" class="link mx-15 color-main">
                 회원가입
               </a>
-              <a href="login.jsp" class="link mx-15 color-main"> 로그인 </a>
+              <a href="<%=request.getContextPath()%>/login.do" class="link mx-15 color-main"> 로그인 </a>
               <a
-                href="map_search.jsp"
+                href="<%=request.getContextPath()%>/mapSearchPage.do"
                 class="btn mx-15 sm color-main border-gray f-16"
               >
                 가게 검색하기
