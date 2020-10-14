@@ -66,7 +66,7 @@
             data-aos-delay="450"
           >
             <span> 아이디가 없으신가요? </span>
-            <a href="#" class="link action-1"> 회원가입 </a>
+            <a href="<%=request.getContextPath()%>/register.do" class="link action-1"> 회원가입 </a>
           </div>
         </form>
       </div>

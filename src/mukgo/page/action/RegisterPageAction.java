@@ -20,7 +20,7 @@ public class RegisterPageAction implements IAction{
 	public String process(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return "/page/store_menu_list.jsp";
+		return "/page/register.jsp";
 	}
 
 }
