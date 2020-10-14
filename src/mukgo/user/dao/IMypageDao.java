@@ -6,6 +6,7 @@ import java.util.List;
 
 import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
+import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
 
 public interface IMypageDao {
@@ -22,4 +23,8 @@ public interface IMypageDao {
 	public int userAddressDelete(int memNum) throws SQLException;
 	
 	public List<OrderVO> userRecentOrder(int memNum) throws SQLException;
+	
+	public String getStoreName(int stoNum) throws SQLException;
+	
+	public MenuVO getMenuInfo(int menuNum) throws SQLException;
 }

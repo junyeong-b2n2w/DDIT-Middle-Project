@@ -1,3 +1,7 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="mukgo.vo.MenuVO"%>
+<%@page import="mukgo.vo.OrderVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ include file="header.jsp" %>
 <!-- Header 2 -->
@@ -39,17 +43,29 @@ pageEncoding="UTF-8"%> <%@ include file="header.jsp" %>
     <h2 class="pb-40">최근 주문 목록</h2>
     <table class="table table-bordered text-justify text-center">
       <tr class="bg-gray">
-        <th>주문일</th>
+        <th>주문일시</th>
         <th>가게명</th>
         <th>주문금액</th>
         <th>상세내역</th>
         <th>리뷰쓰기</th>
       </tr>
+      <%
+      	@SuppressWarnings("unchecked")
+      	List<OrderVO> list = (List<OrderVO>)request.getAttribute("orderList");
+      	@SuppressWarnings("unchecked")
+      	List<String> stoNameList = (List<String>)request.getAttribute("stoNameList");
+      	@SuppressWarnings("unchecked")
+      	List<MenuVO> menuInfoList = (List<MenuVO>)request.getAttribute("menuList");
+      	for(int i=0; i<list.size(); i++){
+      		int price = menuInfoList.get(i).getMenu_price() * list.get(i).getOrd_count();
+      		DecimalFormat format = new DecimalFormat("###,###");
+      		format.format(price);
+      %>
       <tr class="text-center">
-        <td class="align-middle">10/5</td>
-        <td class="align-middle"><a href="">가게명</a></td>
-        <td class="align-middle">25000</td>
-        <td class="align-middle">떡볶이 및 1건</td>
+        <td class="align-middle"><%=list.get(i).getOrd_date().substring(0, 16)%></td>
+        <td class="align-middle"><a href=""><%=stoNameList.get(i)%></a></td>
+        <td class="align-middle"><%=price%></td>
+        <td class="align-middle"><%=menuInfoList.get(i).getMenu_name()%></td>
         <td class="align-middle">
           <button
             data-toggle="modal"
@@ -61,57 +77,9 @@ pageEncoding="UTF-8"%> <%@ include file="header.jsp" %>
           </button>
         </td>
       </tr>
-
-      <tr class="text-center">
-        <td class="align-middle">10/5</td>
-        <td class="align-middle"><a href="">가게명</a></td>
-        <td class="align-middle">25000</td>
-        <td class="align-middle">떡볶이 및 1건</td>
-        <td class="align-middle">
-          <button
-            data-toggle="modal"
-            data-target="#reviewModal"
-            type="button"
-            class="btn btn-outline-danger text-dark border btn-sm"
-          >
-            리뷰 쓰기
-          </button>
-        </td>
-      </tr>
-
-      <tr class="text-center">
-        <td class="align-middle">10/5</td>
-        <td class="align-middle"><a href="">가게명</a></td>
-        <td class="align-middle">25000</td>
-        <td class="align-middle">떡볶이 및 1건</td>
-        <td class="align-middle">
-          <button
-            data-toggle="modal"
-            data-target="#reviewModal"
-            type="button"
-            class="btn btn-outline-danger text-dark border btn-sm"
-          >
-            리뷰 쓰기
-          </button>
-        </td>
-      </tr>
-
-      <tr class="text-center">
-        <td class="align-middle">10/5</td>
-        <td class="align-middle"><a href="">가게명</a></td>
-        <td class="align-middle">25000</td>
-        <td class="align-middle">떡볶이 및 1건</td>
-        <td class="align-middle">
-          <button
-            data-toggle="modal"
-            data-target="#reviewModal"
-            type="button"
-            class="btn btn-outline-danger text-dark border btn-sm"
-          >
-            리뷰 쓰기
-          </button>
-        </td>
-      </tr>
+      <%
+      	}
+      %>
     </table>
   </div>
   <!-- 내정보 수정-->

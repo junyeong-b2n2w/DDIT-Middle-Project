@@ -3,7 +3,7 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="mypage">
-	<select id="userMypage" parameterClass="String">
+	<select id="userMypage" parameterClass="String" resultClass="MemberVO">
 		SELECT * FROM tb_member WHERE mem_id = #data#
 	</select>
 	
@@ -19,7 +19,7 @@
 		UPDATE tb_member SET mem_quit_gb = 1 WHERE mem_id = #data#
 	</update>	
 
-	<select id="userAddress" parameterClass="int">
+	<select id="userAddress" parameterClass="int" resultClass="AddressVO">
 		SELECT * FROM tb_address WHERE mem_num = #data# 
 	</select>
 	
@@ -34,7 +34,15 @@
 		DELETE FROM tb_address WHERE add_mem_num = #data#
 	</delete>
 	
-	<select id="userRecentOrder" parameterClass="int">
+	<select id="userRecentOrder" parameterClass="int" resultClass="OrderVO">
 		SELECT * FROM tb_order WHERE ord_mem_num = #data#
 	</select>	
+	
+	<select id="getStoreName" parameterClass="int" resultClass="String">
+		SELECT sto_name FROM tb_store WHERE sto_num = #data#
+	</select>
+	
+	<select id="getMenuInfo" parameterClass="int" resultClass="MenuVO">
+		SELECT * FROM tb_menu WHERE menu_num = #data#
+	</select>
 </sqlMap>

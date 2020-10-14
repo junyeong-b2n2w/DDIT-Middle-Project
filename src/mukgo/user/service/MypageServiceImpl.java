@@ -8,6 +8,7 @@ import mukgo.user.dao.IMypageDao;
 import mukgo.user.dao.MypageDaoImpl;
 import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
+import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
 
 public class MypageServiceImpl implements IMypageService{
@@ -95,6 +96,26 @@ public class MypageServiceImpl implements IMypageService{
 			e.printStackTrace();
 		}
 		return list;
+	}
+	@Override
+	public String getStoreName(int stoNum){
+		String storeName = "";
+		try {
+			storeName = dao.getStoreName(stoNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return storeName;
+	}
+	@Override
+	public MenuVO getMenuInfo(int menuNum){
+		MenuVO vo = new MenuVO();
+		try {
+			vo = dao.getMenuInfo(menuNum);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
 	}
 
 }

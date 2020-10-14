@@ -1,9 +1,11 @@
 package mukgo.user.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
+import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
 
 public interface IMypageService {
@@ -20,4 +22,8 @@ public interface IMypageService {
 	public int userAddressDelete(int memNum);
 	
 	public List<OrderVO> userRecentOrder(int memNum);
+	
+	public String getStoreName(int stoNum);
+	
+	public MenuVO getMenuInfo(int menuNum);
 }

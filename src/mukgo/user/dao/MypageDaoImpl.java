@@ -8,6 +8,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 import mukgo.util.BuildSqlMapClient;
 import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
+import mukgo.vo.MenuVO;
 import mukgo.vo.OrderVO;
 
 public class MypageDaoImpl implements IMypageDao{
@@ -58,6 +59,16 @@ public class MypageDaoImpl implements IMypageDao{
 	@Override
 	public List<OrderVO> userRecentOrder(int memNum) throws SQLException {
 		return smc.queryForList("mypage.userRecentOrder", memNum);
+	}
+
+	@Override
+	public String getStoreName(int stoNum) throws SQLException {
+		return (String) smc.queryForObject("mypage.getStoreName", stoNum);
+	}
+
+	@Override
+	public MenuVO getMenuInfo(int menuNum) throws SQLException {
+		return (MenuVO) smc.queryForObject("mypage.getMenuInfo", menuNum);
 	}
 	
 }
