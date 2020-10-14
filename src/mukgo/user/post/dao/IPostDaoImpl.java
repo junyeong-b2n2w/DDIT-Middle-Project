@@ -44,17 +44,17 @@ public class IPostDaoImpl implements IPostDao{
 
 	@Override
 	public int postCount() throws SQLException {
-		return (Integer)client.queryForObject("post.boardCount");
+		return (Integer)client.queryForObject("post.postCount");
 	}
 
 	@Override
 	public int insertPost(PostVO vo) throws SQLException {
-		return (Integer)client.insert("post.insertBoard", vo);
+		return (Integer)client.insert("post.insertPost", vo);
 	}
 
 	@Override
 	public int updatePost(PostVO vo) throws SQLException {
-		return client.update("post.updateBoard", vo);
+		return client.update("post.updatePost", vo);
 	}
 
 	@Override
