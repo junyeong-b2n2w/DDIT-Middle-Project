@@ -1,6 +1,7 @@
 package mukgo.user.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -24,37 +25,39 @@ public class MypageDaoImpl implements IMypageDao{
 	
 	@Override
 	public MemberVO userMypage(String id) throws SQLException {
-		return null;
+		return (MemberVO) smc.queryForObject("mypage.userMypage", id);
 	}
 
 	@Override
 	public int userMypageUpdate(MemberVO vo) throws SQLException {
-		return 0;
+		return smc.update("mypage.userMypageUpdate", vo);
 	}
 
 	@Override
 	public int userMypageDelete(String id) throws SQLException {
-		return 0;
+		return smc.update("mypage.userMypageDelete", id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public AddressVO userAddress(String id) throws SQLException {
-		return null;
+	public List<AddressVO> userAddress(int memNum) throws SQLException {
+		return smc.queryForList("mypage.userAddress", memNum);
 	}
 
 	@Override
 	public int userAddressUpdate(AddressVO vo) throws SQLException {
-		return 0;
+		return smc.update("mypage.userAddressUpadate", vo);
 	}
 
 	@Override
-	public int userAddressDelete(String id) throws SQLException {
-		return 0;
+	public int userAddressDelete(int memNum) throws SQLException {
+		return smc.delete("mypage.userAddressDelete", memNum);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public OrderVO userRecentOrder(String id) throws SQLException {
-		return null;
+	public List<OrderVO> userRecentOrder(int memNum) throws SQLException {
+		return smc.queryForList("mypage.userRecentOrder", memNum);
 	}
 	
 }

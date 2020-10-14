@@ -1,5 +1,7 @@
 package mukgo.user.service;
 
+import java.util.List;
+
 import mukgo.vo.AddressVO;
 import mukgo.vo.MemberVO;
 import mukgo.vo.OrderVO;
@@ -11,11 +13,11 @@ public interface IMypageService {
 	
 	public int userMypageDelete(String id);
 	
-	public AddressVO userAddress(String id);
+	public List<AddressVO> userAddress(int memNum);
 	
 	public int userAddressUpdate(AddressVO vo);
 	
-	public int userAddressDelete(String id);
+	public int userAddressDelete(int memNum);
 	
-	public OrderVO userRecentOrder(String id);
+	public List<OrderVO> userRecentOrder(int memNum);
 }

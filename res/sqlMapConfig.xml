@@ -52,5 +52,7 @@
 	 
 <!-- 	 <sqlMap resource="kr/or/ddit/ibatis/mymember.xml"/> -->
 	<sqlMap resource="mukgo/ibatis/user.xml"/>
+	<sqlMap resource="mukgo/ibatis/post.xml"/>
+	<sqlMap resource="mukgo/ibatis/mypage.xml"/>
 
 </sqlMapConfig>
