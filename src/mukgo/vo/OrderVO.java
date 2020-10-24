@@ -7,6 +7,10 @@ public class OrderVO {
 	private int ord_delete_gb;
 	private String ord_date;
 	private String ord_please;
+	private int ord_count;
+	private int ord_menu_num;
+	private int ord_menu_brand_num;
+	
 	public int getOrd_num() {
 		return ord_num;
 	}
@@ -61,7 +65,4 @@ public class OrderVO {
 	public void setOrd_menu_brand_num(int ord_menu_brand_num) {
 		this.ord_menu_brand_num = ord_menu_brand_num;
 	}
-	private int ord_count;
-	private int ord_menu_num;
-	private int ord_menu_brand_num;
 }

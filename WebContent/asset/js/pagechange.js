@@ -1,18 +1,35 @@
 $("#myinfo_button").on("click", function () {
   $(this).addClass("active").removeClass("text-dark");
   $("#recent_order_button").removeClass("active").addClass("text-dark");
+  $("#address_list_button").removeClass("active").addClass("text-dark");
 
   $("#userMyinfo").removeClass("d-none");
   $("#recent_order_list").addClass("d-none");
+  $("#address_list").addClass("d-none");
+  
 });
 
 $("#recent_order_button").on("click", function () {
   $(this).addClass("active").removeClass("text-dark");
   $("#myinfo_button").removeClass("active").addClass("text-dark");
+  $("#address_list_button").removeClass("active").addClass("text-dark");
 
   $("#userMyinfo").addClass("d-none");
   $("#recent_order_list").removeClass("d-none");
+  $("#address_list").addClass("d-none");
 });
+
+
+$("#address_list_button").on("click", function () {
+  $(this).addClass("active").removeClass("text-dark");
+  $("#myinfo_button").removeClass("active").addClass("text-dark");
+  $("#recent_order_button").removeClass("active").addClass("text-dark");
+
+  $("#address_list").removeClass("d-none");
+  $("#recent_order_list").addClass("d-none");
+  $("#userMyinfo").addClass("d-none");
+});
+
 
 // Add the following code if you want the name of the file appear on select
 $(".custom-file-input").on("change", function () {
@@ -161,4 +178,15 @@ $("#sales_button").on("click", function () {
   $("#store_info").addClass("d-none");
   $("#store_review").addClass("d-none");
   $("#order_list").addClass("d-none");
+});
+
+
+$('#member_join_button').on('click',function(){
+	$('#selectJoinType').addClass('d-none');
+	$('#memberForm').removeClass('d-none');
+});
+
+$('#store_join_button').on('click',function(){
+	$('#selectJoinType').addClass('d-none');
+	$('#storeMemberForm').removeClass('d-none');
 });

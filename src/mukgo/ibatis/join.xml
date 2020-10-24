@@ -3,11 +3,33 @@
 	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
 	
 <sqlMap namespace="join">
-	<select id="searchMember" parameterClass="String" resultClass="int">
+	<select id="searchMember" parameterClass="String" resultClass="String">
 		SELECT mem_id FROM tb_member WHERE mem_id = #mem_id#
 	</select>
 	
 	<insert id="insertMember" parameterClass="MemberVO">
-		INSERT INTO tb_member VALUES (#mem_id#, #mem_num#, #mem_pw#, #mem_type_gb#, #mem_quit_gb#, #mem_tel#, #mem_reg_num#, #mem_email#)
+		INSERT INTO tb_member  VALUES (#mem_id#, member_seq.nextval, #mem_pw#, #mem_type_gb#, 0, #mem_tel#, #mem_reg_num#, #mem_email#,null ,#mem_name#)
+		
+		<selectKey resultClass="int" keyProperty="mem_num">
+			SELECT member_seq.currval mem_num FROM dual
+		</selectKey>
+		
 	</insert>
+	
+	<insert id="insertStore" parameterClass="StoreVO">
+		INSERT INTO tb_store VALUES (store_seq.nextval, #sto_mem_num#, 0, #sto_name#, #sto_tel#, #sto_pos_x#,
+		 							 #sto_pos_y#, #sto_brand#, #sto_dt_gb#, #sto_delivery_gb#, 0, #sto_opentoclose#)
+		 							 
+ 		<selectKey resultClass="int" keyProperty="sto_num">
+			SELECT store_seq.currval sto_num FROM dual
+		</selectKey>					 
+	</insert>
+	
+	<insert id="insertStoreAddr">
+		INSERT INTO tb_address VALUES (#add_mem_num#, #add_mem_gb#, #add_name#, #add_sido#, #add_gungu#, #add_dong#, #add_detail#, #add_post_num#,  ADDRESS_SEQ.nextval)
+	</insert>
+	
+	<update id="setMemberStore" parameterClass="MemberVO">
+		UPDATE tb_member set mem_sto_num = #mem_sto_num# WHERE mem_num = #mem_num#
+	</update>
 </sqlMap>

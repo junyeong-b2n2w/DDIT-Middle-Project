@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="order">
+	<insert id="insertOrder" parameterClass="OrderVO">
+		INSERT INTO tb_order VALUES(order_seq.nextval, #ord_sto_num#, #ord_mem_num#, 0, sysdate, #ord_please#, #ord_count#, #ord_menu_brand_num#, #ord_menu_num#)
+		<selectKey resultClass="int" keyProperty="ord_num">
+			SELECT order_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<insert id="insertOrderAdd" parameterClass="OrderVO">
+		INSERT INTO tb_order VALUES(#ord_num#, #ord_sto_num#, #ord_mem_num#, 0, sysdate, #ord_please#, #ord_count#, #ord_menu_brand_num#, #ord_menu_num#)
+		<selectKey resultClass="int" keyProperty="ord_num">
+			SELECT 1 FROM dual
+		</selectKey>
+	</insert>
+	<insert id="insertAddr" parameterClass="AddressVO">
+		INSERT INTO tb_address VALUES(#add_mem_num#, 1, #add_name#, #add_sido#, #add_gungu#, #add_dong#, #add_detail#, #add_post_num#, address_seq.nextval)
+		<selectKey keyProperty="add_num" resultClass="int">
+			SELECT address_seq.currval FROM dual
+		</selectKey> 
+	</insert>
+	<select id="storeNum" parameterClass="String" resultClass="int">
+		SELECT sto_num FROM tb_store WHERE sto_name LIKE #data#
+	</select>
+	<select id="menuNum" parameterClass="String" resultClass="int">
+		SELECT menu_num FROM tb_menu WHERE menu_name LIKE #data#
+	</select>
+	<insert id="deliveryStatus" parameterClass="DeliveryVO">
+		INSERT INTO tb_delivery VALUES(delivery_seq.nextval, #deli_ord_num#, null, null, null, '신규주문', #deli_ord_addr_num#)
+		<selectKey resultClass="int" keyProperty="deli_num">
+			SELECT delivery_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<select id="storeOrderList" parameterClass="int" resultClass="OrderVO">
+		SELECT * FROM tb_order WHERE ord_sto_num = #data# ORDER BY ord_date DESC
+	</select>
+	<select id="orderDeli" parameterClass="int" resultClass="DeliveryVO">
+		SELECT * FROM tb_delivery WHERE deli_ord_num = #ordNum#
+	</select>
+	<update id="deliStatusStore" parameterClass="int">
+		UPDATE tb_delivery SET deli_status = '배달중' WHERE deli_ord_num = #data#
+	</update>
+	<update id="deliStatusUser" parameterClass="int">
+		UPDATE tb_delivery SET deli_status = '배달완료' WHERE deli_ord_num = #data#
+	</update>
+</sqlMap>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="admin">
+	<select id="getAllMember" resultClass="MemberVO">
+	SELECT
+		MEM_ID ,
+		MEM_NUM ,
+		MEM_PW ,
+		MEM_TYPE_GB ,
+		MEM_QUIT_GB ,
+		MEM_TEL ,
+		MEM_REG_NUM ,
+		MEM_EMAIL ,
+		NVL(MEM_STO_NUM,0) MEM_STO_NUM ,
+		NVL(MEM_NAME,0) MEM_NAME
+	FROM tb_member ORDER BY mem_num
+	</select>
+	
+	<update id="changeGB" parameterClass="MemberVO"> 
+		update tb_member set mem_quit_gb = 1 where mem_num = #mem_num#
+	</update>
+	
+	<update id="changeGB2" parameterClass="MemberVO"> 
+		update tb_member set mem_quit_gb = 0 where mem_num = #mem_num#
+	</update>
+	
+	<update id="storeChange" parameterClass="StoreVO">
+		update tb_store set sto_access_gb = 0 where sto_mem_num = #sto_mem_num#
+	</update>
+ 	<select id="getAllStore" resultClass="StoreVO">
+		SELECT * FROM tb_store ORDER BY sto_num
+	</select>
+</sqlMap>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="store">
+
+	<!-- 전체지점 조회 -->
+	<select id="StoreAll" resultClass="StoreVO">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0
+	</select>
+	
+	<!-- 한지점 조회 -->
+	<select id="StoreOne" resultClass="StoreVO" parameterClass="int">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0 AND sto_num = #sto_num#
+	</select>
+	
+	<!-- 한지점 조회 -->
+	<select id="StoreName" resultClass="String" parameterClass="int">
+		SELECT sto_name
+		FROM tb_store
+		WHERE sto_delete_gb = 0 AND sto_mem_num = #sto_mem_num#
+	</select>
+	
+	<!-- 전체지점 검색 -->
+	<select id="SearchStore" parameterClass="java.util.Map" resultClass="StoreVO">
+		SELECT *
+		FROM tb_store
+		WHERE sto_delete_gb = 0 
+		AND sto_NAME LIKE '%'||#sto_name#||'%'
+		AND sto_pos_x &lt; #sto_pos_x_max# AND sto_pos_x &gt; #sto_pos_x_min#
+		AND sto_pos_y &lt; #sto_pos_y_max# AND sto_pos_y &gt; #sto_pos_y_min#
+		<isNotEmpty property="dt">
+    		AND sto_dt_gb = 1
+		</isNotEmpty>
+		<isNotEmpty property="bd">
+    		AND sto_delivery_gb = 1
+		</isNotEmpty>
+		<iterate property="brandList" prepend="AND sto_brand IN" open="(" close=")" conjunction=",">
+			#brandList[]#
+		</iterate> 
+	</select>
+	
+	<!-- 지점평점 조회 -->
+	<select id = "StoreGrade" resultClass="StoreVO">
+		select round(rev_star)
+		from tb_store s, tb_order o, tb_review r
+		where o.ord_num = r.rev_ord_num and s.sto_num = o.ord_num;
+	</select>
+	<!-- 지점리뷰 수 조회 -->
+	<select id="StoreReviewCnt" resultClass="StoreVO">
+		select count(rev_num)
+		from tb_store s, tb_order o, tb_review r
+		where o.ord_num = r.rev_ord_num and s.sto_num = o.ord_num;
+	</select>
+	
+	<!-- 지점찜 수 조회 -->
+	<select id="StoreChoiceCnt" resultClass="StoreVO">
+		select count(fav_sto_num)
+		from tb_store s join tb_favorite f on(s.sto_num = f.fav_sto_num)
+	</select>
+	
+	<!-- 메뉴 초기값 -->
+	<select id="StoreMenu"  resultClass="MenuVO">	
+		select menu_num, menu_category, menu_name, menu_price,menu_cal
+		from tb_menu join tb_store on (menu_brand_num = sto_brand)
+		group by sto_brand, menu_category,menu_num, menu_category, menu_name, menu_price,menu_cal
+		having sto_brand = 1
+		order by menu_category
+	</select>
+	
+	<!-- 메뉴조회 -->
+	<select id="StoreMenuSelect" parameterClass="int" resultClass="MenuVO">	
+		select menu_num, menu_category, menu_name, menu_price,menu_cal
+		from tb_menu join tb_store on (menu_brand_num = sto_brand)
+		group by sto_brand, menu_category,menu_num, menu_category, menu_name, menu_price,menu_cal
+		having sto_brand =  #data#
+		order by menu_category
+	</select>
+	
+	<!-- 브랜드별 메뉴 출력 -->
+	<select id="stroemenuprint" parameterClass="int" resultClass="MenuVO">
+		select menu_num, menu_category, menu_name, menu_price,menu_cal
+		from tb_menu join tb_store on (menu_brand_num = sto_brand)
+		group by sto_brand, menu_category,menu_num, menu_category, menu_name, menu_price,menu_cal
+		having sto_brand =(select sto_brand from tb_store where sto_num =  #sto_num#) 
+		order by menu_category
+	</select>
+	<!-- 메뉴추가 -->
+	<insert id="storeInsertMenu" parameterClass="MenuVO">
+		insert into tb_menu values
+		(menu_seq.nextval,
+		#menu_brand_num#,
+		 0,
+		 #menu_category#,
+		 #menu_name#,
+		 #menu_price#,
+		 #menu_cal#)
+	</insert>
+	<!-- 메뉴삭제 -->
+<!-- 	<update id="storeUpdateDelete" parameterClass="MenuVO">
+		update tb_menu set menu_delete_gb = #menu_delete_gb#
+		where menu_num = #menu_num#
+	</update> -->
+	
+	<delete id="storeDelete" parameterClass="int">
+		delete tb_menu where menu_num = #menu_num#
+	</delete>
+	<!-- 메뉴수정 -->
+	<update id="storeUpdate" parameterClass="MenuVO">
+		update tb_menu set 
+		menu_brand_num = #menu_brand_num#,
+		menu_category = #menu_category#,
+		menu_name = #menu_name#,
+		menu_price = #menu_price#,
+		menu_cal = #menu_cal#
+		where menu_num = #menu_num#
+	</update>
+	
+	<select id ="getMenu" parameterClass="int" resultClass="MenuVO">
+		select * from tb_menu where menu_num = #menu_num#
+	</select>
+	
+	
+	<select id="storeBrandNum" resultClass="StoreVO">
+		select sto_brand
+		from tb_store
+		group by sto_brand
+	</select>
+	
+	
+	<select id="storeStar" parameterClass="int" resultClass="String">
+		SELECT ROUND(AVG(rev_star), 2) FROM tb_review a, (SELECT ord_num
+		FROM tb_order
+		WHERE ord_sto_num = #data#) b WHERE a.rev_ord_num = b.ord_num
+	</select>
+	
+	<select id="storeOrder" parameterClass="int" resultClass="java.util.HashMap">
+<!-- 		SELECT * FROM tb_order od, tb_delivery dv WHERE od.ord_num = dv.deli_ord_num AND od.ord_sto_num = #data# -->
+		SELECT * FROM tb_order od, tb_menu mn WHERE od.ord_menu_num = mn.menu_num AND ord_sto_num = #data#
+	</select>
+	
+	<select id="storeInformation" parameterClass="int" resultClass="StoreVO">
+		SELECT sto_name, sto_tel, sto_pos_x, sto_pos_y, sto_delivery_gb, sto_opentoclose ,sto_num
+		FROM tb_store
+		WHERE sto_num = #data#
+	</select>
+	
+	
+	<update id="storeInfoUpdate" parameterClass="StoreVO">
+	
+		update tb_store set
+		
+		sto_name    = #sto_name# ,
+    sto_tel      =#sto_tel#  ,
+    sto_pos_x      =#sto_pos_x#, 
+    sto_pos_y     =#sto_pos_y#  ,
+    sto_brand     =#sto_brand#  ,
+    sto_dt_gb      =#sto_dt_gb#,
+    sto_delivery_gb  =#sto_delivery_gb#,
+    sto_access_gb   =#sto_access_gb#,
+    sto_opentoclose =#sto_opentoclose# 
+    
+    where sto_num = #sto_num#
+	
+	
+	</update>
+	
+	
+	<select id="orderCount" parameterClass="int" resultClass="int">
+		select count(*) ordercount
+		from TB_DELIVERY, TB_ORDER
+		where TB_DELIVERY.DELI_ORD_NUM= TB_ORDER.ORD_NUM AND
+		DELI_STATUS LIKE '신규주문' AND TB_ORDER.ORD_STO_NUM = #sto_num#
+	
+	</select>
+	
+</sqlMap>

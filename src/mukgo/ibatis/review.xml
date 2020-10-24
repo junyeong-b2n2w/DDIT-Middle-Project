@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="review">
+	<!-- 리뷰조회 -->
+	<select id = "selectAll" resultClass="ReviewVO">
+		select rev_num, rev_content, rev_star, rev_date, rev_mem_num
+		from tb_review join  tb_store on(rev_ord_num =sto_num)
+		where sto_num = #sto_num#
+	</select>
+	
+	<select id = "reviewprint" parameterClass="int" resultClass="ReviewVO">
+		select rev_num, rev_content, rev_star, rev_date, rev_mem_num
+		from tb_review join  tb_store on(rev_ord_num =sto_num)
+		where sto_num = #sto_num#
+	</select>
+	
+	<!-- 리뷰쓰기 -->
+	<insert id = "insertReview" parameterClass="ReviewVO">
+		insert into tb_review 
+		values(review_seq.nextval,
+				#rev_mem_num#,
+				2,
+                #rev_parentrev_num#,
+                #rev_delete_gb#,
+                #rev_star#,
+               	sysdate,
+                #rev_content#)
+	</insert>
+	
+	<insert id="insertNewReview" parameterClass="ReviewVO">
+		INSERT INTO tb_review
+		VALUES(review_seq.nextval,
+			   #rev_mem_num#,
+			   #rev_ord_num#,
+			   0,
+			   0,
+			   #rev_star#,
+			   sysdate,
+			   #rev_content#
+		)
+		<selectKey keyProperty="rev_num" resultClass="int">
+			SELECT review_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<insert id="insertReviewImage" parameterClass="ReviewImageVO">
+		INSERT INTO tb_reviewimage VALUES(
+			review_seq.currval, reviewimage_seq.nextval, #rev_img_path#, #rev_img_name#
+		)
+		<selectKey keyProperty="rev_img_num" resultClass="int">
+			SELECT reviewimage_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	
+	<select id="storeReview" parameterClass="int" resultClass="ReviewListVO">
+		SELECT rev_NUM, rev_date , rev_content, count(menu_num)-1 menu_num , min(Menu_name) menu_name, avg(rev_star) rev_star FROM v_review_list where ord_sto_num = #date# group by rev_NUM, rev_date, rev_content
+	</select>
+</sqlMap>
+

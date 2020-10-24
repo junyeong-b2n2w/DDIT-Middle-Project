@@ -32,6 +32,7 @@
 	<typeAlias alias="ReviewImageVO" type="mukgo.vo.ReviewImageVO"/>
 	<typeAlias alias="ReviewVO" type="mukgo.vo.ReviewVO"/>
 	<typeAlias alias="StoreVO" type="mukgo.vo.StoreVO"/>
+	<typeAlias alias="ReviewListVO" type="mukgo.vo.ReviewListVO"/>
 <!-- 	 <typeAlias alias="memVO" type="kr.or.ddit.vo.MemberVO"/> -->
 	
 	<!-- DB와 연결을 처리하는 부분 -->
@@ -51,9 +52,19 @@
 	 -->
 	 
 <!-- 	 <sqlMap resource="kr/or/ddit/ibatis/mymember.xml"/> -->
-	<sqlMap resource="mukgo/ibatis/user.xml"/>
+
+	
+	<sqlMap resource="mukgo/ibatis/store.xml"/>
+	<sqlMap resource="mukgo/ibatis/review.xml"/>	
+
 	<sqlMap resource="mukgo/ibatis/post.xml"/>
 	<sqlMap resource="mukgo/ibatis/mypage.xml"/>
 	<sqlMap resource="mukgo/ibatis/login.xml"/>
+	<sqlMap resource="mukgo/ibatis/join.xml"/>
+
+	<sqlMap resource="mukgo/ibatis/admin.xml"/>
+
+	<sqlMap resource="mukgo/ibatis/address.xml"/>
+	<sqlMap resource="mukgo/ibatis/order.xml"/>
 
 </sqlMapConfig>

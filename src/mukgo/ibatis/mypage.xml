@@ -4,14 +4,25 @@
 
 <sqlMap namespace="mypage">
 	<select id="userMypage" parameterClass="String" resultClass="MemberVO">
-		SELECT * FROM tb_member WHERE mem_id = #data#
+		SELECT
+		MEM_ID,
+		MEM_NUM,
+		MEM_PW,
+		MEM_TYPE_GB,
+		MEM_QUIT_GB,
+		MEM_TEL,
+		MEM_REG_NUM,
+		MEM_EMAIL,
+		NVL(MEM_STO_NUM, 0),
+		MEM_NAME 
+		 FROM tb_member WHERE mem_id = #data#
 	</select>
 	
 	<update id="userMypageUpdate" parameterClass="MemberVO">
-		UPDATE tb_member SET mem_id = #mem_id#, mem_num = #mem_num#, 
-		mem_pw = #mem_pw#, mem_type_gb = #mem_type_gb#, 
-		mem_quit_gb = #mem_quit_gb#, mem_tel = #mem_tel#, 
-		mem_reg_num = #mem_reg_num#, mem_email = #mem_email#, mem_sto_num = #mem_sto_num#
+		UPDATE tb_member SET mem_id = #mem_id#,  
+		 mem_name = #mem_name#,
+		 mem_tel = #mem_tel#, 
+		mem_email = #mem_email#
 		WHERE mem_id = #mem_id#
 	</update>
 
@@ -35,7 +46,7 @@
 	</delete>
 	
 	<select id="userRecentOrder" parameterClass="int" resultClass="OrderVO">
-		SELECT * FROM tb_order WHERE ord_mem_num = #data#
+		SELECT * FROM tb_order WHERE ord_mem_num = #data# ORDER BY ord_date DESC
 	</select>	
 	
 	<select id="getStoreName" parameterClass="int" resultClass="String">
@@ -46,7 +57,7 @@
 		SELECT * FROM tb_menu WHERE menu_num = #data#
 	</select>
 	
-	<select id="reviewCheck" parameterClass="int" resultClass="OrderVO">
+	<select id="reviewCheck" parameterClass="OrderVO" resultClass="int">
 		SELECT count(rev_num) FROM tb_review WHERE rev_mem_num = #ord_mem_num# AND rev_ord_num = #ord_num#
 	</select>
 	
@@ -81,4 +92,5 @@
 	<delete id="reviewImageDelete" parameterClass="int">
 		DELETE FROM tb_reviewimage WHERE rev_img_num = #data#
 	</delete>	
+	
 </sqlMap>

@@ -133,7 +133,7 @@
     <script src="<%=request.getContextPath()%>/asset/js/jquery.maskedinput.min.js"></script>
     <!-- Startup JS (Custom js for all blocks) -->
     <script src="<%=request.getContextPath()%>/asset/js/script.js"></script>
-    <script src="<%=request.getContextPath()%>/asset/js/map.js"></script>
+    
     <script src="<%=request.getContextPath()%>/asset/js/pagechange.js"></script>
 
   </body>

@@ -1,3 +1,4 @@
+<%@page import="mukgo.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -5,7 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Null Java 먹고죽어</title>
+    <title>버거는 살안쪄요 내가 쪄요</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="<%=request.getContextPath()%>/asset/i/favicon.png" type="image/x-icon" />
     <!-- Google Fonts -->
@@ -42,7 +43,45 @@
     <link href="<%=request.getContextPath()%>/asset/css/style.min.css" rel="stylesheet" />
     <!-- jQuery 3.5.1 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link href="<%=request.getContextPath()%>/asset/css/map.css" rel="stylesheet" />
+    <script type="text/javascript">
+    $(function(){
+
+     	 function ordercount(){
+     		 $.ajax({
+     			 url : "<%=request.getContextPath()%>/orderCount.do",
+     			 data : {"sto_num" : '<%=session.getAttribute("store_num")%>'},
+     			 dataType:'json',
+     			 success : function(res){
+     				 $(".badge").text(res.count);
+     				 console.log(res.count);
+     			 }
+     		 })
+     	 }
+     	 
+       	<%
+        if(session.getAttribute("mem_gb")!=null && session.getAttribute("mem_gb").toString().equals("2")){ 
+       			%>
+            	ordercount();
+            	
+            	 setInterval(() => {
+       				ordercount();
+       			}, 10000);
+            	<%}%> 
+     	 
+     	
+    	<%
+    	MemberVO memvo = (MemberVO)session.getAttribute("memvo");
+    	
+        if(session.getAttribute("mem_id")!=null && memvo.getMem_quit_gb() == 1 ){ 
+		%>
+			alert("로그인 하신 아이디 벤 되어있는 아이디 입니다. 고객센터에 문의해 주세요")
+			
+    		location.href = "<%=request.getContextPath()%>/logout.do";
+       			
+       			<%}%> 
+    })
+    
+    </script>
   </head>
   <body>
     <!-- Navigation 2 -->
@@ -64,7 +103,7 @@
             <div class="mb-10 mb-md-0" data-aos="fade-up" data-aos-delay="150">
               <div class="d-inline-block px-20 dropdown">
                 <a
-                  href="board.jsp"
+                  href="<%=request.getContextPath()%>/board.do"
                   class="link color-main dropdown-toggle"
                   id="navigation_2_dropdown_1"
                   data-toggle="dropdown"
@@ -78,28 +117,100 @@
                   aria-labelledby="navigation_2_dropdown_1"
                 >
                   <div>
-                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> 이벤트 </a>
+                    <a href="<%=request.getContextPath()%>/board.do?post_bor_num=1" class="link color-main"> 이벤트 </a>
                   </div>
                   <div>
-                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> 공지사항 </a>
+                    <a href="<%=request.getContextPath()%>/board.do?post_bor_num=2" class="link color-main"> 공지사항 </a>
                   </div>
                   <div>
-                    <a href="<%=request.getContextPath()%>/board.do" class="link color-main"> QnA </a>
+                    <a href="<%=request.getContextPath()%>/board.do?post_bor_num=3" class="link color-main"> QnA </a>
                   </div>
                 </div>
               </div>
             </div>
             <div class="text-md-right" data-aos="fade-up" data-aos-delay="300">
+            
+            <%
+            	if(session.getAttribute("mem_id")==null){
+            %>
               <a href="<%=request.getContextPath()%>/register.do" class="link mx-15 color-main">
                 회원가입
               </a>
               <a href="<%=request.getContextPath()%>/login.do" class="link mx-15 color-main"> 로그인 </a>
               <a
-                href="<%=request.getContextPath()%>/mapSearchPage.do"
+                href="<%=request.getContextPath()%>/page/map_search.do"
                 class="btn mx-15 sm color-main border-gray f-16"
               >
                 가게 검색하기
               </a>
+				<%}else{
+					if(session.getAttribute("mem_gb")!=null && session.getAttribute("mem_gb").toString().equals("1")){
+					%>
+						<a href="<%=request.getContextPath()%>/page/userMypage.do" class="link mx-15 color-main"> 
+						<img
+							src="<%=request.getContextPath()%>/asset/i/hamburger.png"
+							 srcset="<%=request.getContextPath()%>/asset/i/hamburger.png" alt="" width="25px"
+							class="img-fluid radius10"/>&nbsp;&nbsp;<span><%=session.getAttribute("mem_id")%></span>
+						</a> <a href="<%=request.getContextPath()%>/page/map_search.do"
+							class="btn mx-15 sm color-main border-gray f-16">
+							가게 검색하기 </a> <a href="<%=request.getContextPath()%>/cart.do"
+							class="btn mx-15 sm color-main border-gray f-16">
+							장바구니 <span class="badge badge-danger cartCount ml-5"></span>
+						</a>
+						
+						<a href="<%=request.getContextPath()%>/logout.do"
+							class="btn mx-15 sm color-main border-gray f-16">
+							로그아웃
+						</a>
+
+			<%	
+	}else if(session.getAttribute("mem_gb")!=null && session.getAttribute("mem_gb").toString().equals("2")){ 
+			%>
+			<a href="<%=request.getContextPath()%>/storeMyPage.do" class="link mx-15 color-main"> <img
+				src="<%=request.getContextPath()%>/asset/i/store.png" srcset="<%=request.getContextPath()%>/asset/i/store.png" alt="" width="25px"
+				class="img-fluid radius10" />&nbsp;&nbsp; <%=session.getAttribute("store_name")%>
+			</a> <a href="<%=request.getContextPath()%>/storeMyPage.do" class="btn mx-15 sm color-main border-gray f-16">
+				신규 주문 <span class="badge badge-danger"></span>
+			</a>
+			<a href="<%=request.getContextPath()%>/logout.do"
+							class="btn mx-15 sm color-main  border-gray f-16">
+							로그아웃
+						</a>
+
+			<% 
+	}else if(session.getAttribute("mem_gb")!=null && session.getAttribute("mem_gb").toString().equals("3")){
+	%>	
+		<a href="<%=request.getContextPath()%>/adminMypage.do" class="link mx-15 color-main">
+                관리자 페이지
+              </a>
+              <a href="<%=request.getContextPath()%>/logout.do"
+							class="btn mx-15 sm color-main  border-gray f-16">
+							로그아웃
+						</a>
+	
+	<% 	
+	}
+	
+	
+	
+}
+%>              
+              
+              <script>
+              		//세션에서 아이디 가져와 로컬스토리지 키값으로 검색하
+              	 cartList = JSON.parse(localStorage.getItem("<%=session.getAttribute("mem_id")%>"));
+              	 
+              	 cartCount = cartList ? cartList.length  : "0";
+              	 console.log(cartCount);
+              	 $('.cartCount').text(cartCount);
+              
+              	 
+            
+              	
+              </script>
+              
+              
+              
             </div>
           </div>
         </div>

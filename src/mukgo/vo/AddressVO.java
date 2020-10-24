@@ -9,6 +9,13 @@ public class AddressVO {
 	private String add_dong;
 	private String add_detail;
 	private String add_post_num;
+	private int add_num;
+	public int getAdd_num() {
+		return add_num;
+	}
+	public void setAdd_num(int add_num) {
+		this.add_num = add_num;
+	}
 	public int getAdd_mem_num() {
 		return add_mem_num;
 	}

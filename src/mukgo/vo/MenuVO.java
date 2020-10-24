@@ -7,6 +7,8 @@ public class MenuVO {
 	private String menu_category;
 	private String menu_name;
 	private int menu_price;
+	private int menu_cal;
+	
 	public int getMenu_num() {
 		return menu_num;
 	}
@@ -49,5 +51,5 @@ public class MenuVO {
 	public void setMenu_cal(int menu_cal) {
 		this.menu_cal = menu_cal;
 	}
-	private int menu_cal;
+	
 }

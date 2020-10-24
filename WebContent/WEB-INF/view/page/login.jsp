@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
+    
+    <script>
+console.log("<%=session.getAttribute("mem_id")%>")
+	if("<%=session.getAttribute("mem_id")%>" != "null"){
+		location.href = "<%=request.getContextPath()%>/main.do";
+	}
+
+</script>
+    
     <!-- Form 1 -->
+    
     <section
       class="pt-120 pb-120 bg-dark form_1"
-      data-bg-src="<%=request.getContextPath()%>/asset/i/form_1_bg@2x.jpg"
-      data-bg-src-2x="<%=request.getContextPath()%>/asset/i/form_1_bg@2x.jpg"
+      data-bg-src="<%=request.getContextPath()%>/asset/i/ham_back.jpg"
+      data-bg-src-2x="<%=request.getContextPath()%>/asset/i/ham_back.jpg"
     >
       <div class="container px-xl-0">
         <form

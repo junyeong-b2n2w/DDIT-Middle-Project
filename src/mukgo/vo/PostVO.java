@@ -1,6 +1,7 @@
 package mukgo.vo;
 
 public class PostVO {
+	
 	private int post_num;
 	private int post_parentpost_num;
 	private int post_delete_gb;
@@ -9,6 +10,7 @@ public class PostVO {
 	private String  post_writer;
 	private String  post_date;
 	private String  post_content;
+	private int post_bor_num;
 	public int getPost_num() {
 		return post_num;
 	}
@@ -63,5 +65,5 @@ public class PostVO {
 	public void setPost_bor_num(int post_bor_num) {
 		this.post_bor_num = post_bor_num;
 	}
-	private int post_bor_num;
+
 }

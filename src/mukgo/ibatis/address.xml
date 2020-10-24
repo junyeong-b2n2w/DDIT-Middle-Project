@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+	
+<sqlMap namespace="address">
+	<select id="addressList" parameterClass="String" resultClass="AddressVO">
+		SELECT * FROM tb_address WHERE add_mem_num = (SELECT mem_num FROM tb_member WHERE mem_id = #data#)
+	</select>
+	<insert id="addressInsert" parameterClass="AddressVO">
+		INSERT INTO tb_address VALUES(#add_mem_num#, #add_mem_gb#, #add_name#, #add_sido#, #add_gungu#, #add_dong#, #add_detail#, #add_post_num#, address_seq.nextval)
+		<selectKey keyProperty="add_num" resultClass="int">
+			SELECT address_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<update id="addressUpdate" parameterClass="AddressVO">
+		UPDATE tb_address SET
+		add_name=#add_name#,
+		add_sido=#add_sido#,
+		add_gungu=#add_gungu#,
+		add_dong=#add_dong#,
+		add_detail=#add_detail#,
+		add_post_num=#add_post_num#
+		WHERE add_mem_num = #add_mem_num# AND add_name = #add_name#
+	</update>
+	<delete id="addressDelete" parameterClass="int">
+		DELETE FROM tb_address WHERE add_num = #data#
+	</delete>
+	<select id="addressCheck" parameterClass="String" resultClass="int">
+		SELECT COUNT(add_name) FROM tb_address WHERE add_name = #data#
+	</select>
+</sqlMap>

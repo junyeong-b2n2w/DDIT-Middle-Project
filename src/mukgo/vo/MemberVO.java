@@ -9,6 +9,14 @@ public class MemberVO {
 	private String mem_tel;
 	private String mem_reg_num;
 	private String mem_email;
+	private String mem_name;
+	
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
 	public String getMem_id() {
 		return mem_id;
 	}

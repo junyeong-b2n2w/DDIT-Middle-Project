@@ -4,9 +4,16 @@ public class DeliveryVO {
 	private int deli_num;
 	private int deli_ord_num;
 	private String deli_man;
-	private int deli_eta;
+	private String deli_eta;
 	private String deli_arrival;
 	private String deli_status;
+	private int deli_ord_addr_num;
+	public int getDeli_ord_addr_num() {
+		return deli_ord_addr_num;
+	}
+	public void setDeli_ord_addr_num(int deli_ord_addr_num) {
+		this.deli_ord_addr_num = deli_ord_addr_num;
+	}
 	public int getDeli_num() {
 		return deli_num;
 	}
@@ -25,10 +32,10 @@ public class DeliveryVO {
 	public void setDeli_man(String deli_man) {
 		this.deli_man = deli_man;
 	}
-	public int getDeli_eta() {
+	public String getDeli_eta() {
 		return deli_eta;
 	}
-	public void setDeli_eta(int deli_eta) {
+	public void setDeli_eta(String deli_eta) {
 		this.deli_eta = deli_eta;
 	}
 	public String getDeli_arrival() {

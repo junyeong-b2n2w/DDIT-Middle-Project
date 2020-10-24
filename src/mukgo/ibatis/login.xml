@@ -8,7 +8,7 @@
 		
 	 MEM_ID   ,  
     MEM_NUM    , 
-     
+    MEM_NAME,
     MEM_PW      ,
     MEM_TYPE_GB ,
     MEM_QUIT_GB ,

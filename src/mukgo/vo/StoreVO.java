@@ -6,8 +6,8 @@ public class StoreVO {
 	private int sto_delete_gb;
 	private String sto_name;
 	private String sto_tel;
-	private int sto_pos_x;
-	private int sto_pos_y;
+	private Double sto_pos_x;
+	private Double sto_pos_y;
 	private int sto_brand;
 	private int sto_dt_gb;
 	private int sto_delivery_gb;
@@ -43,16 +43,16 @@ public class StoreVO {
 	public void setSto_tel(String sto_tel) {
 		this.sto_tel = sto_tel;
 	}
-	public int getSto_pos_x() {
+	public Double getSto_pos_x() {
 		return sto_pos_x;
 	}
-	public void setSto_pos_x(int sto_pos_x) {
+	public void setSto_pos_x(Double sto_pos_x) {
 		this.sto_pos_x = sto_pos_x;
 	}
-	public int getSto_pos_y() {
+	public Double getSto_pos_y() {
 		return sto_pos_y;
 	}
-	public void setSto_pos_y(int sto_pos_y) {
+	public void setSto_pos_y(Double sto_pos_y) {
 		this.sto_pos_y = sto_pos_y;
 	}
 	public int getSto_brand() {
@@ -85,4 +85,6 @@ public class StoreVO {
 	public void setSto_opentoclose(String sto_opentoclose) {
 		this.sto_opentoclose = sto_opentoclose;
 	}
+	
+	
 }
